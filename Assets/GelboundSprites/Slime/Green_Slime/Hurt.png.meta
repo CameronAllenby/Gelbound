@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -166,10 +166,10 @@ TextureImporter:
       name: Hurt_0
       rect:
         serializedVersion: 2
-        x: 43
+        x: 44
         y: 0
-        width: 50
-        height: 32
+        width: 48
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: Hurt_1
       rect:
         serializedVersion: 2
-        x: 169
+        x: 170
         y: 0
-        width: 52
-        height: 34
+        width: 50
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,35 +207,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_2
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 8
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f6b92202d6bf5cc0800000000000000
-      internalID: -3720053754089064719
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hurt_3
       rect:
         serializedVersion: 2
         x: 287
         y: 0
-        width: 61
-        height: 36
+        width: 60
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,34 +229,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_4
-      rect:
-        serializedVersion: 2
-        x: 397
-        y: 1
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 683152a5dc649daf0800000000000000
-      internalID: -371187646486735994
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hurt_5
       rect:
         serializedVersion: 2
-        x: 408
+        x: 394
         y: 0
-        width: 68
+        width: 81
         height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -295,35 +251,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_6
-      rect:
-        serializedVersion: 2
-        x: 518
-        y: 8
-        width: 15
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90655a715c8c91e60800000000000000
-      internalID: 7933592967420663305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hurt_7
       rect:
         serializedVersion: 2
-        x: 522
+        x: 518
         y: 0
-        width: 82
-        height: 32
+        width: 85
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,10 +276,10 @@ TextureImporter:
       name: Hurt_8
       rect:
         serializedVersion: 2
-        x: 639
+        x: 640
         y: 0
-        width: 93
-        height: 31
+        width: 91
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,7 +298,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 51a33c9265debc249a56bbba63022716
     internalID: 0
     vertices: []
     indices: 
@@ -373,7 +307,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hurt_0: -2048800907179887802
+      Hurt_1: 490842205202310979
+      Hurt_2: -3720053754089064719
+      Hurt_3: 5649970053243570431
+      Hurt_4: -371187646486735994
+      Hurt_5: 1177448812329152706
+      Hurt_6: 7933592967420663305
+      Hurt_7: 7273187483062910031
+      Hurt_8: -1817361991890795262
+      Hurt_9: 503508292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
