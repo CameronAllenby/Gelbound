@@ -15,7 +15,7 @@ public class Idle : State
     public override void Enter()
     {
         base.Enter();
-
+        
     }
 
     public override void Exit()
@@ -31,8 +31,9 @@ public class Idle : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
-
+        player.anim.Play("Idle");
+        player.CheckForMovment();
+        //player.CheckForInAir();
     }
 
     public override void PhysicsUpdate()
