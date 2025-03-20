@@ -18,11 +18,15 @@ namespace Player
         public Idle idle;
         public Move move;
 
-        int health;
-        int stamina;
+        float health;
+        float stamina;
+        float maxStamina;
+        float startingHealth;
 
         public bool cooldown;
         public int dashDirection;
+
+        public GameObject hitBox;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -65,23 +69,27 @@ namespace Player
 
                 if (sr.flipX == true)
                 {
-                    dashDirection = -90;
-                    rb.AddForce(new Vector3(dashDirection, 0, 0));
+                    dashDirection = -1;
+                    rb.AddForce(new Vector3(-10, 0, 0));
                     StartCoroutine("Dash");
                 }
                 if (sr.flipX == false)
                 {
 
-                    dashDirection = 90;
-                    rb.AddForce(new Vector3(dashDirection, 0, 0));
+                    dashDirection = 1;
+                    rb.AddForce(new Vector3(-10, 0, 0));
                     StartCoroutine("Dash");
 
                 }
-
-
-
             }
 
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                GameObject clone;
+                clone = Instantiate(hitBox, transform.position, transform.rotation);
+
+                
+            }
         }
 
         //Idle check
@@ -106,6 +114,13 @@ namespace Player
             }
         }
 
+        public void Attack()
+        {
+            GameObject clone;
+            clone = Instantiate(hitBox, transform.position, transform.rotation);
+
+            rb.transform.position = new Vector2(transform.position.x +(2*dashDirection), transform.position.y + 1);
+        }
 
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -119,10 +134,8 @@ namespace Player
         IEnumerator Dash()
         {
             cooldown = false;
-            rb.AddForce(new Vector3(dashDirection, 0, 0));
             yield return new WaitForSecondsRealtime(2);
             cooldown = true;
-
         }
 
     }
