@@ -31,18 +31,14 @@ public class Move : State
     {
         base.LogicUpdate();
         player.anim.Play("run");
-        
-        
-        if (Input.GetKey(KeyCode.D))
+
+
+        if (Input.GetAxis("Horizontal") !=0)
         {
-            player.rb.AddForce(new Vector3(4, 0, 0));
+            player.rb.AddForce(new Vector3(3 * Input.GetAxis("Horizontal"), 0, 0));
             player.sr.flipX = false;
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            player.rb.AddForce(new Vector3(-4, 0, 0));
-            player.sr.flipX = true;
-        }
+        
         
         player.CheckForIdle();
 

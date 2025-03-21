@@ -108,7 +108,7 @@ namespace Player
 
         public void CheckForMovment()
         {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && ground == true)
+            if (Input.GetAxis("Horizontal") != 0)
             {
                 sm.ChangeState(move);
             }
