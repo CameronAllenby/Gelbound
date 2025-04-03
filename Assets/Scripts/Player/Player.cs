@@ -18,15 +18,17 @@ namespace Player
         public Idle idle;
         public Move move;
 
-        float health;
-        float stamina;
-        float maxStamina;
-        float startingHealth;
+        public int health;
+        int stamina;
+        int maxStamina;
+        public int maxHealth = 100;
 
         public bool cooldown;
         public int dashDirection;
 
         public GameObject hitBox;
+
+        public healthbar healthbar;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -41,8 +43,9 @@ namespace Player
             string s;
 
             cooldown = true;
-            s = string.Format("last state={0}\ncurrent state={1}", sm.LastState, sm.CurrentState);
-            Console.WriteLine(s);
+
+            health = maxHealth;
+            healthbar.SetMaxHealth(maxHealth);
         }
 
         void FixedUpdate()
@@ -129,6 +132,11 @@ namespace Player
                 Debug.Log("ground");
                 ground = true;
             }
+
+            if (collision.CompareTag("Projectile") == true)
+            {
+                TakeDamage(10);
+            }
         }
 
         IEnumerator Dash()
@@ -138,6 +146,12 @@ namespace Player
             cooldown = true;
         }
 
+        void TakeDamage(int damage)
+        {
+            health -= damage;
+
+            healthbar.SetHealth(health);
+        }
     }
 
 }
