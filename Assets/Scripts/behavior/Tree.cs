@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public abstract class Tree : MonoBehaviour
+    public abstract class Oak : MonoBehaviour
     {
         private Node _root = null;
 
@@ -18,7 +18,6 @@ namespace Enemy
             if (_root != null)
                 _root.Evaluate();
         }
-
         protected abstract Node SetupTree();
     }
 }

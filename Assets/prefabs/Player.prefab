@@ -185,9 +185,12 @@ MonoBehaviour:
   sr: {fileID: 7536102854273370863}
   anim: {fileID: 0}
   sm: {fileID: 461541759680128159}
+  health: 0
+  maxHealth: 100
   cooldown: 0
   dashDirection: 0
   hitBox: {fileID: 2995989158808604456, guid: a6f67aedc43f50649b2bc15d90844d1b, type: 3}
+  healthbar: {fileID: 0}
 --- !u!95 &8969617996580434099
 Animator:
   serializedVersion: 7

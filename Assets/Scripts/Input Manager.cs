@@ -9,9 +9,9 @@ public class InputManager : MonoBehaviour
 {
     public bool MenuOpenCloseInput { get; private set; }
 
-    private PlayerInput _playerInput;
+
     public static InputManager Instance;
-    private InputAction _action;
+
 
     private void Awake()
     {
@@ -24,12 +24,12 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        _playerInput = GetComponent<PlayerInput>();
 
-        _action = _playerInput.actions["StartButton"];
+
+
     }
     private void Update()
     {
-        MenuOpenCloseInput = _action.WasPressedThisFrame();
+
     }
 }
