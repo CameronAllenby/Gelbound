@@ -12,14 +12,14 @@ public class EnemyMelee : Oak
  
     protected override Node SetupTree()
     {
-        Node root = new Selector(new List<Node>
+        Node root = new sequence(new List<Node>
         {
-            new sequence(new List<Node>
+            new Selector(new List<Node>
             {
                 new AttackPlayer(transform),
                 new TaskAttack(transform),
             }),
-            new sequence(new List<Node>
+            new Selector(new List<Node>
             {
                 new PlayerSpot(transform),
                 new PlayerChase(transform),

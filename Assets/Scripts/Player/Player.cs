@@ -20,7 +20,7 @@ namespace Player
 
         public int health;
         int stamina;
-        int maxStamina;
+        int maxStamina = 100;
         public int maxHealth = 100;
 
         public bool cooldown;
@@ -29,6 +29,7 @@ namespace Player
         public GameObject hitBox;
 
         public healthbar healthbar;
+        public Staminabar staminabar;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -46,6 +47,7 @@ namespace Player
 
             health = maxHealth;
             healthbar.SetMaxHealth(maxHealth);
+            staminabar.SetMaxStamina(maxStamina);
         }
 
         void FixedUpdate()
@@ -66,24 +68,21 @@ namespace Player
                 ground = false;
             }
 
-            if (Input.GetKey(KeyCode.Q) && cooldown == true)
+            if (Input.GetKey(KeyCode.Q))
             {
 
 
                 if (sr.flipX == true)
                 {
-                    dashDirection = -1;
-                    rb.AddForce(new Vector3(-10, 0, 0));
-                    StartCoroutine("Dash");
+                    dashDirection = -1;                    
                 }
                 if (sr.flipX == false)
                 {
 
                     dashDirection = 1;
-                    rb.AddForce(new Vector3(-10, 0, 0));
-                    StartCoroutine("Dash");
-
                 }
+
+                Debug.Log(dashDirection);
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -139,18 +138,19 @@ namespace Player
             }
         }
 
-        IEnumerator Dash()
-        {
-            cooldown = false;
-            yield return new WaitForSecondsRealtime(2);
-            cooldown = true;
-        }
 
         public void TakeDamage(int damage)
         {
             health -= damage;
 
             healthbar.SetHealth(health);
+        }
+
+        public void LoseStamina(int damage)
+        {
+            stamina -= damage;
+
+            staminabar.SetStamina(stamina);
         }
     }
 
