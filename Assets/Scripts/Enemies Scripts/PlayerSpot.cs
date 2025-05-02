@@ -4,7 +4,7 @@ using Enemy;
 public class PlayerSpot : Node
 {
     private Transform _transform;
-    private static int _PlayerLayerMask = 1 << 7;
+    public static int _PlayerLayerMask = 1 << 7;
     public PlayerSpot(Transform transform)
     {
         _transform = transform;

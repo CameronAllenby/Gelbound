@@ -9,6 +9,8 @@ public class EnemyMelee : Oak
     public static float FOVrange= 6f;
 
     public static float attackRange = 1f;
+
+    public LayerMask player;
  
     protected override Node SetupTree()
     {
