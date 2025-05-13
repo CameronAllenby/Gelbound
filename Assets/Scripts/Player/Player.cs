@@ -42,9 +42,9 @@ namespace Player
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
             string s;
-
+            StartCoroutine("stamregen");
             cooldown = true;
-
+            stamina = maxStamina;
             health = maxHealth;
             healthbar.SetMaxHealth(maxHealth);
             staminabar.SetMaxStamina(maxStamina);
@@ -59,28 +59,29 @@ namespace Player
         void Update()
         {
             sm.CurrentState.LogicUpdate();
+            if (sr.flipX == true)
+            {
+                dashDirection = -1;
+                Debug.Log(dashDirection);
+            }
+            if (sr.flipX == false)
+            {
+                Debug.Log(dashDirection);
+                dashDirection = 1;
+            }
 
-            
             if (Input.GetKey(KeyCode.W) && ground == true)
             {
                 anim.Play("jump");
                 rb.AddForce(new Vector3(0, 400, 0));
                 ground = false;
+
             }
 
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && stamina >= 20)
             {
-
-
-                if (sr.flipX == true)
-                {
-                    dashDirection = -1;                    
-                }
-                if (sr.flipX == false)
-                {
-
-                    dashDirection = 1;
-                }
+                rb.AddForce(new Vector2(500 * dashDirection, 0));
+                LoseStamina(20);
 
                 Debug.Log(dashDirection);
             }
@@ -151,6 +152,17 @@ namespace Player
             stamina -= damage;
 
             staminabar.SetStamina(stamina);
+        }
+
+        IEnumerator stamregen()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(0.1f);
+                LoseStamina(-1);
+                yield return null;
+            }
+
         }
     }
 

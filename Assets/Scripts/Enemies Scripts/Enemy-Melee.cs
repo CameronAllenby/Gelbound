@@ -14,9 +14,9 @@ public class EnemyMelee : Oak
  
     protected override Node SetupTree()
     {
-        Node root = new PlayerSpot(transform);
+        Node root = new Selector(new List<Node>
         {
-            /*new sequence(new List<Node>
+            new sequence(new List<Node>
             {
                 new AttackPlayer(transform),
                 new TaskAttack(transform),
@@ -26,8 +26,8 @@ public class EnemyMelee : Oak
                 new PlayerSpot(transform),
                 new PlayerChase(transform),
             }),
-            new Patrol(transform, waypoints),*/
-        };
+            new Patrol(transform, waypoints),
+        });
         return root;
     }
 

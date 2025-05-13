@@ -34,9 +34,8 @@ public class Chase : StateEnemy
         if (Vector2.Distance(boss.transform.position, boss.target.position) < boss.stoppingDistance)
         {
             boss.transform.position = Vector2.MoveTowards(boss.transform.position, boss.target.position, boss.speed * Time.deltaTime);
-
         }
-    }
+    }   
 
 
 
