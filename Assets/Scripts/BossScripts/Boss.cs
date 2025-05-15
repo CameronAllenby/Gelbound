@@ -26,6 +26,8 @@ namespace Enemies
 
         public float stoppingDistance;
 
+        public Animator anim;
+
         void Start ()
         {
             bossHealth.SetMaxHealth(maxHealth);

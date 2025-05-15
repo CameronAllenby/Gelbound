@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject self;
     public float force;
-
+    public Animator anim;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = new Vector2 (direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot +90);
+        transform.rotation = Quaternion.Euler(0, 0, rot );
     }
 
     // Update is called once per frame
@@ -32,7 +32,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Ground") == true)
         {
-            Destroy(self);
+            anim.Play("Projectile");
         }
     }
+
+    
 }

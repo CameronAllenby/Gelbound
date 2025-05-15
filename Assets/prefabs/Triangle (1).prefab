@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 730542857133231093}
   - component: {fileID: 2279018174719768941}
   - component: {fileID: 3538846255902830694}
+  - component: {fileID: 413154802992847738}
+  - component: {fileID: 4961218923318941519}
   m_Layer: 0
   m_Name: Triangle (1)
   m_TagString: Projectile
@@ -29,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 8564182912568839839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.770791, y: 2.6633193, z: 0}
-  m_LocalScale: {x: 0.16, y: 0.2, z: 1}
+  m_LocalPosition: {x: 11.68583, y: 2.69548, z: 0}
+  m_LocalScale: {x: 0.46344355, y: 0.69473207, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 2969746989218956506, guid: 87f90ee7ac94b33478bec43c4aad1cbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,6 +134,7 @@ MonoBehaviour:
   player: {fileID: 0}
   self: {fileID: 8564182912568839839}
   force: 1.66
+  anim: {fileID: 4961218923318941519}
 --- !u!61 &3538846255902830694
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,15 +169,54 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: 0.0021141768, y: 0.0031552315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.56, y: 0.13}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5472541, y: 0.19098282}
   m_EdgeRadius: 0
+--- !u!111 &413154802992847738
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564182912568839839}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: db8a680442ae763438e737727df2d29b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!95 &4961218923318941519
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564182912568839839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f86d6d63e0d0fb348974e72fafa0bece, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
