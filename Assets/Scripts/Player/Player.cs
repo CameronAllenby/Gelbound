@@ -3,12 +3,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 using System.Collections;
+using System.Dynamic;
 
 namespace Player
 {
     public class PlayerScript : MonoBehaviour
     {
         public Rigidbody2D rb;
+        public Rigidbody2D srb;
         public SpriteRenderer sr;
         public Animator anim;
         private bool ground = true;
@@ -24,12 +26,15 @@ namespace Player
         public int maxHealth = 100;
 
         public bool cooldown;
-        public int dashDirection;
+        public int lookDirection;
 
         public GameObject hitBox;
+        public GameObject hitBoxSp;
 
         public healthbar healthbar;
         public Staminabar staminabar;
+
+        public bool flip;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -40,8 +45,8 @@ namespace Player
 
             sr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
+            srb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
-            string s;
             StartCoroutine("stamregen");
             cooldown = true;
             stamina = maxStamina;
@@ -58,19 +63,23 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            sm.CurrentState.LogicUpdate();
-            if (sr.flipX == true)
+            if (stamina >= 100)
             {
-                dashDirection = -1;
-                Debug.Log(dashDirection);
-            }
-            if (sr.flipX == false)
-            {
-                Debug.Log(dashDirection);
-                dashDirection = 1;
+                stamina = 100;
             }
 
-            if (Input.GetKey(KeyCode.W) && ground == true)
+
+            if (flip == false)
+            {
+                lookDirection = 1;
+            }
+            if(flip == true)
+            {
+                lookDirection = -1;
+            }
+            sm.CurrentState.LogicUpdate();
+
+            if (Input.GetAxis("Vertical") != 0 && ground == true)
             {
                 anim.Play("jump");
                 rb.AddForce(new Vector3(0, 400, 0));
@@ -78,20 +87,22 @@ namespace Player
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && stamina >= 20)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= 20)
             {
-                rb.AddForce(new Vector2(500 * dashDirection, 0));
+                rb.AddForce(new Vector2(500 * Input.GetAxis("Horizontal"), 0));
                 LoseStamina(20);
 
-                Debug.Log(dashDirection);
+                Debug.Log(lookDirection);
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 GameObject clone;
                 clone = Instantiate(hitBox, transform.position, transform.rotation);
+                srb = clone.GetComponent<Rigidbody2D>(); 
+                srb.transform.position = new Vector2(transform.position.x + (1 * lookDirection), transform.position.y);
 
-                
+
             }
         }
 
@@ -117,13 +128,6 @@ namespace Player
             }
         }
 
-        public void Attack()
-        {
-            GameObject clone;
-            clone = Instantiate(hitBox, transform.position, transform.rotation);
-
-            rb.transform.position = new Vector2(transform.position.x +(2*dashDirection), transform.position.y + 1);
-        }
 
         private void OnTriggerStay2D(Collider2D collision)
         {

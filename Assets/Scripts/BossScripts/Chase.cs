@@ -1,7 +1,6 @@
 using Enemies;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Chase : StateEnemy
 {
@@ -10,9 +9,12 @@ public class Chase : StateEnemy
     {
     }
     // Start is called before the first frame update
+    private Transform target;
     public override void Enter()
     {
         base.Enter();
+        
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     public override void Exit()
@@ -31,9 +33,9 @@ public class Chase : StateEnemy
 
         base.LogicUpdate();
         boss.anim.Play("walk");
-        if (Vector2.Distance(boss.transform.position, boss.target.position) < boss.stoppingDistance)
+        if (Vector2.Distance(boss.transform.position, target.position) < boss.stoppingDistance)
         {
-            boss.transform.position = Vector2.MoveTowards(boss.transform.position, boss.target.position, boss.speed * Time.deltaTime);
+            boss.transform.position = Vector2.MoveTowards(boss.transform.position, target.position, boss.speed * Time.deltaTime);
         }
     }   
 

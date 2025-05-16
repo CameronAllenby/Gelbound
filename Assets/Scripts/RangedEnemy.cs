@@ -24,16 +24,19 @@ public class RangedEnemy : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 2)
+        if (Vector2.Distance(transform.position, target.position) < stoppingDistance)
         {
-            timer = 0;
-            shoot();
-        }
-        if (Vector2.Distance(transform.position, target.position) < stoppingDistance && Vector2.Distance(transform.position, target.position) > stopping)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
+            if (Vector2.Distance(transform.position, target.position) > stopping)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            }
 
+            if (timer > 2)
+            {
+                timer = 0;
+                shoot();
+            }
+        }
     }
 
     public void shoot()

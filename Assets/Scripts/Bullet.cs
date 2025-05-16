@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Ground") == true)
         {
-            anim.Play("Projectile");
+            Destroy(self);
         }
     }
 

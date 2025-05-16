@@ -3,7 +3,6 @@ using Enemy;
 using TMPro;
 public class AttackPlayer : Node
 {
-    private static int _PlayerLayerMask = 1 << 7;
 
     private Transform _transform;
     public AttackPlayer(Transform transform)

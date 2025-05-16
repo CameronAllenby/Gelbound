@@ -36,7 +36,15 @@ public class Move : State
         if (Input.GetAxis("Horizontal") !=0)
         {
             player.rb.AddForce(new Vector3(3 * Input.GetAxis("Horizontal"), 0, 0));
-            player.sr.flipX = false;
+            if (Input.GetAxis("Horizontal") == -1)
+            {
+                player.sr.flipX = false;
+            }
+            if (Input.GetAxis("Horizontal") == 1)
+            {
+                player.sr.flipX = true;
+            }
+            player.flip = false;
         }
         
         

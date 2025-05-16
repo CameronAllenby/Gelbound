@@ -12,10 +12,9 @@ namespace Enemies
         public GameObject bossBar;
         public LayerMask playerLayer;
 
-        public float sightRange, spottingRange;
-        public bool playerInRange, playerAttackRange;
-
         public Chase chasing;
+        public Attack attack;
+        public Inactive inactive;
 
         public StateMachineEnemy sm;
         public Transform _transform;
@@ -25,6 +24,7 @@ namespace Enemies
         public Transform target;
 
         public float stoppingDistance;
+        public float attackRange;
 
         public Animator anim;
 
@@ -32,14 +32,15 @@ namespace Enemies
         {
             bossHealth.SetMaxHealth(maxHealth);
             chasing = new Chase(this, sm);
+            attack = new Attack(this, sm);
+            inactive = new Inactive(this, sm);
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         }
         void Update ()
         {
-            playerAttackRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
-            playerInRange = Physics.CheckSphere(transform.position, spottingRange, playerLayer);
-            if (playerInRange == true)
+            
+            if (Vector2.Distance(transform.position, target.position) <= stoppingDistance)
             {
                 bossBar.SetActive(true);
             }
@@ -56,26 +57,27 @@ namespace Enemies
         public void CheckForChase()
         {
             //Changes the state if the player is within spoting distance
-            if (playerInRange == true)
+            if (Vector2.Distance(transform.position, target.position) <= stoppingDistance)
             {
-                
                 sm.ChangeState(chasing);
             }
         }
         public void CheckForAttack()
         {
-            if (playerAttackRange == true)
+            if (Vector2.Distance(transform.position, target.position) <= attackRange)
             {
-
+                sm.ChangeState(chasing);
             }
         }
-        private void OnDrawGizmosSelected()
+
+        public void CheckForInactive()
         {
-            //draws the spheres so i can see them in the Unity editor 
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(transform.position, sightRange);
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, spottingRange);
+            if (Vector2.Distance(transform.position, target.position) <= attackRange)
+            {
+                sm.ChangeState(inactive);
+            }
         }
+
+
     }
 }
