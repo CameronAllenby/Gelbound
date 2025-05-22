@@ -47,7 +47,7 @@ namespace Player
             rb = GetComponent<Rigidbody2D>();
             srb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
-            StartCoroutine("stamregen");
+            StartCoroutine("stamregen");    
             cooldown = true;
             stamina = maxStamina;
             health = maxHealth;

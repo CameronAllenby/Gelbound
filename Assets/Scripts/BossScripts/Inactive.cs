@@ -13,8 +13,7 @@ public class Inactive : StateEnemy
     public override void Enter()
     {
         base.Enter();
-
-        
+   
     }
 
     public override void Exit()
@@ -29,7 +28,9 @@ public class Inactive : StateEnemy
 
     public override void LogicUpdate()
     {
-       
+        base.LogicUpdate();
+        boss.CheckForChase();
+        boss.CheckForAttack();
     }
     public override void PhysicsUpdate()
     {

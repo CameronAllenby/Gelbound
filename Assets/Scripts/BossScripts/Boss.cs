@@ -28,13 +28,15 @@ namespace Enemies
 
         public Animator anim;
 
-        void Start ()
+        void Start () 
         {
             bossHealth.SetMaxHealth(maxHealth);
             chasing = new Chase(this, sm);
             attack = new Attack(this, sm);
             inactive = new Inactive(this, sm);
+            sm.Init(inactive);
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            
 
         }
         void Update ()
@@ -66,7 +68,7 @@ namespace Enemies
         {
             if (Vector2.Distance(transform.position, target.position) <= attackRange)
             {
-                sm.ChangeState(chasing);
+                sm.ChangeState(attack);
             }
         }
 
