@@ -38,6 +38,7 @@ public class Chase : StateEnemy
         boss.transform.position = Vector2.MoveTowards(boss.transform.position, target.position, boss.speed * Time.deltaTime);
         boss.CheckForInactive();
         boss.CheckForAttack();
+        boss.CheckForDeath();
     }   
 
 

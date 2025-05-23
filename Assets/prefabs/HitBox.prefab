@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d1239a80e60df46819878c45b6961e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxPrefab: {fileID: 2995989158808604456}
+  hitBox: {fileID: 2995989158808604456}

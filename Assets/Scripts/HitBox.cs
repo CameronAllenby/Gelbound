@@ -10,14 +10,8 @@ public class HitBox : MonoBehaviour
 
     IEnumerator kill()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         Destroy(hitBox);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy") == true)
-        {
-            Destroy(hitBox);
-        }
-    }
+    
 }

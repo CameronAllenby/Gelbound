@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements.Experimental;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Enemies
 { 
@@ -32,7 +33,12 @@ namespace Enemies
         public Animator anim;
 
         public GameObject bullet;
+        public GameObject hitBox;
+        public Rigidbody2D srb;
         public Transform bulletPos;
+        public int lookDirection;
+
+        public GameObject self;
      
         void Start () 
         {
@@ -42,18 +48,24 @@ namespace Enemies
             inactive = new Inactive(this, sm);
             sm.Init(inactive);
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            
+            srb = GetComponent<Rigidbody2D>();
 
         }
         void Update ()
         {
+            if (health == 0)
+            {
+                Destroy(self);
+            }
             if ( target.transform.position.x > transform.position.x)
             {
                 sr.flipX = true;
+                lookDirection = 1;
             }
             if (target.transform.position.x < transform.position.x)
             {
                 sr.flipX = false;
+                lookDirection = -1;
             }
                 Debug.Log("boss" + sm.CurrentState);
             sm.CurrentState.LogicUpdate();
@@ -78,9 +90,12 @@ namespace Enemies
             while (true)
             {
                 anim.Play("1_atk");
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.7f);
+                HitBox();
+                yield return new WaitForSeconds(0.3f);
                 anim.Play("idle");
                 yield return new WaitForSeconds(1f);
+                CheckForChase();
                 yield return null;
             }
         }
@@ -94,12 +109,20 @@ namespace Enemies
                 yield return null;
             }
         }
+
+        void HitBox()
+        {
+            GameObject clone;
+            clone = Instantiate(hitBox, transform.position, transform.rotation);
+            srb = clone.GetComponent<Rigidbody2D>();
+            srb.transform.position = new Vector2(transform.position.x + (1 * lookDirection), transform.position.y + 1);
+        }
         private void OnTriggerStay2D(Collider2D collision)
         {
 
             if (collision.CompareTag("PlayerHit") == true)
             {
-                TakeDamage(10);
+                TakeDamage(25);
             }
         }
 
@@ -137,7 +160,13 @@ namespace Enemies
                 sm.ChangeState(inactive);
             }
         }
-
+        public void CheckForDeath()
+        {
+            if (health <= 0)
+            {
+                sm.ChangeState(inactive);
+            }
+        }
 
     }
 }

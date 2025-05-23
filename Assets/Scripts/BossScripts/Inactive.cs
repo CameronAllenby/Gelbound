@@ -33,6 +33,7 @@ public class Inactive : StateEnemy
 
         boss.CheckForChase();
         boss.CheckForAttack();
+        boss.CheckForDeath();
     }
     public override void PhysicsUpdate()
     {

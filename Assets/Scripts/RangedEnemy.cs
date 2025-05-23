@@ -11,8 +11,9 @@ public class RangedEnemy : MonoBehaviour
     public float stopping;
     public GameObject bullet;
     public Transform bulletPos;
-
+    public int health = 2;
     private float timer;
+    public GameObject self;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -32,7 +33,10 @@ public class RangedEnemy : MonoBehaviour
             sr.flipX = false;
         }
 
-
+        if (health == 0)
+        {
+            Destroy(self);
+        }
         timer += Time.deltaTime;
 
         if (Vector2.Distance(transform.position, target.position) < stoppingDistance)
@@ -49,9 +53,19 @@ public class RangedEnemy : MonoBehaviour
             }
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerHit") == true)
+        {
+            health--;
+        }
 
+
+    }
     public void shoot()
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
+
+
 }

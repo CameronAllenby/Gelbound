@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  sr: {fileID: 0}
+  sr: {fileID: 5842479665982672331}
   stoppingDistance: 5.98
   stopping: 0.55
 --- !u!50 &4541003600669678025

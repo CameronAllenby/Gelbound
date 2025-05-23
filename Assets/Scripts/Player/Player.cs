@@ -1,9 +1,10 @@
 using System;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 using System.Collections;
 using System.Dynamic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements.Experimental;
 
 namespace Player
 {
@@ -65,6 +66,10 @@ namespace Player
                 stamina = 100;
             }
 
+            if (health <= 0)
+            {
+                SceneManager.LoadScene(0);
+            }
 
             if (sr.flipX == false)
             {
@@ -94,6 +99,7 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && cooldown == true)
             {
+                anim.Play("attack-1");
                 GameObject clone;
                 clone = Instantiate(hitBox, transform.position, transform.rotation);
                 srb = clone.GetComponent<Rigidbody2D>(); 
@@ -103,6 +109,7 @@ namespace Player
             }
         }
 
+        
         //Idle check
         public void CheckForIdle()
         {

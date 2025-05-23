@@ -34,7 +34,7 @@ public class Attack : StateEnemy
 
         base.LogicUpdate();
 
-        boss.CheckForChase();
+        boss.CheckForDeath();
         boss.CheckForInactive();
         
     }

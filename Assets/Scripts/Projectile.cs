@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Projectile : MonoBehaviour
 {
@@ -29,4 +31,7 @@ public class Projectile : MonoBehaviour
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
+
+    
+
 }
