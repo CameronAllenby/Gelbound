@@ -29,6 +29,8 @@ public class Inactive : StateEnemy
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        boss.anim.Play("idle");
+
         boss.CheckForChase();
         boss.CheckForAttack();
     }

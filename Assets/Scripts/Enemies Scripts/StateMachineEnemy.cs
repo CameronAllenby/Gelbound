@@ -1,6 +1,4 @@
 using UnityEngine;
-
-
 namespace Enemies
 {
     public class StateMachineEnemy : MonoBehaviour

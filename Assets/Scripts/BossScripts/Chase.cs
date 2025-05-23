@@ -1,5 +1,6 @@
 using Enemies;
 using UnityEngine;
+using System.Collections;
 using static UnityEngine.GraphicsBuffer;
 
 public class Chase : StateEnemy
@@ -13,13 +14,14 @@ public class Chase : StateEnemy
     public override void Enter()
     {
         base.Enter();
-        
+        boss.StartCoroutine("shoot");
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     public override void Exit()
     {
         base.Exit();
+        boss.StopCoroutine("shoot");
     }
 
     public override void HandleInput()
@@ -33,11 +35,7 @@ public class Chase : StateEnemy
 
         base.LogicUpdate();
         boss.anim.Play("walk");
-        if (Vector2.Distance(boss.transform.position, target.position) < boss.stoppingDistance)
-        {
-            boss.transform.position = Vector2.MoveTowards(boss.transform.position, target.position, boss.speed * Time.deltaTime);
-        }
-
+        boss.transform.position = Vector2.MoveTowards(boss.transform.position, target.position, boss.speed * Time.deltaTime);
         boss.CheckForInactive();
         boss.CheckForAttack();
     }   

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6524183053887647290}
   m_Layer: 0
   m_Name: Enemy-ranged
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+  sr: {fileID: 0}
   stoppingDistance: 10.01
   stopping: 2.94
   bullet: {fileID: 8564182912568839839, guid: 4883f0bcf7c8b8e4c8c30d3ef8f60e3a, type: 3}

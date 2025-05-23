@@ -8,6 +8,8 @@ TagManager:
   - PlayerAttack
   - Audio
   - Projectile
+  - PlayerHit
+  - Enemy
   layers:
   - Default
   - TransparentFX

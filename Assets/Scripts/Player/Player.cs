@@ -55,10 +55,7 @@ namespace Player
             staminabar.SetMaxStamina(maxStamina);
         }
 
-        void FixedUpdate()
-        {
-            sm.CurrentState.PhysicsUpdate();
-        }
+
 
         // Update is called once per frame
         void Update()
@@ -69,17 +66,17 @@ namespace Player
             }
 
 
-            if (flip == false)
+            if (sr.flipX == false)
             {
                 lookDirection = 1;
             }
-            if(flip == true)
+            if(sr.flipX == true)
             {
                 lookDirection = -1;
             }
             sm.CurrentState.LogicUpdate();
 
-            if (Input.GetAxis("Vertical") != 0 && ground == true)
+            if ((Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(KeyCode.Space)) && ground == true)
             {
                 anim.Play("jump");
                 rb.AddForce(new Vector3(0, 400, 0));
@@ -95,14 +92,14 @@ namespace Player
                 Debug.Log(lookDirection);
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && cooldown == true)
             {
                 GameObject clone;
                 clone = Instantiate(hitBox, transform.position, transform.rotation);
                 srb = clone.GetComponent<Rigidbody2D>(); 
-                srb.transform.position = new Vector2(transform.position.x + (1 * lookDirection), transform.position.y);
-
-
+                srb.transform.position = new Vector2(transform.position.x + (-1 * lookDirection), transform.position.y);
+                cooldown = false;
+                StartCoroutine("ClickCooldown");
             }
         }
 
@@ -167,6 +164,12 @@ namespace Player
                 yield return null;
             }
 
+        }
+
+        IEnumerator ClickCooldown()
+        {
+            yield return new WaitForSeconds(0.1f);
+            cooldown = true;
         }
     }
 

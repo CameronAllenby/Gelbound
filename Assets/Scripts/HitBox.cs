@@ -1,16 +1,23 @@
 using UnityEngine;
-
+using System.Collections;
 public class HitBox : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject hitBox;
     void Start()
     {
-        
+        StartCoroutine("kill");
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator kill()
     {
-        
+        yield return new WaitForSeconds(0.1f);
+        Destroy(hitBox);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") == true)
+        {
+            Destroy(hitBox);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class RangedEnemy : MonoBehaviour
     public float speed;
 
     private Transform target;
-
+    public SpriteRenderer sr;
     public float stoppingDistance;
     public float stopping;
     public GameObject bullet;
@@ -22,6 +22,17 @@ public class RangedEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (target.transform.position.x > transform.position.x)
+        {
+            sr.flipX = true;
+        }
+        if (target.transform.position.x < transform.position.x)
+        {
+            sr.flipX = false;
+        }
+
+
         timer += Time.deltaTime;
 
         if (Vector2.Distance(transform.position, target.position) < stoppingDistance)

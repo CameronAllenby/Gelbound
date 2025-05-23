@@ -1,5 +1,6 @@
 using Enemies;
 using UnityEngine;
+using System.Collections;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -13,11 +14,13 @@ public class Attack : StateEnemy
     public override void Enter()
     {
         base.Enter();
+        boss.StartCoroutine("Attacking");
     }
 
     public override void Exit()
     {
         base.Exit();
+        boss.StopCoroutine("Attacking");
     }
 
     public override void HandleInput()
@@ -30,14 +33,11 @@ public class Attack : StateEnemy
         //Debug.Log("checking for run");
 
         base.LogicUpdate();
-        boss.anim.Play("walk");
-        if (Vector2.Distance(boss.transform.position, boss.target.position) < boss.stoppingDistance)
-        {
-            boss.transform.position = Vector2.MoveTowards(boss.transform.position, boss.target.position, boss.speed * Time.deltaTime);
-        }
+
+        boss.CheckForChase();
+        boss.CheckForInactive();
+        
     }
-
-
 
 
     public override void PhysicsUpdate()
