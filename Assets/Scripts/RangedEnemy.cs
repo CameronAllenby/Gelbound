@@ -24,11 +24,11 @@ public class RangedEnemy : MonoBehaviour
     void Update()
     {
 
-        if (target.transform.position.x > transform.position.x)
+        if (target.transform.position.x < transform.position.x)
         {
             sr.flipX = true;
         }
-        if (target.transform.position.x < transform.position.x)
+        if (target.transform.position.x > transform.position.x)
         {
             sr.flipX = false;
         }
