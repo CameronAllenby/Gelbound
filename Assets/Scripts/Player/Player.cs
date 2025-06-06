@@ -14,7 +14,7 @@ namespace Player
         public Rigidbody2D srb;
         public SpriteRenderer sr;
         public Animator anim;
-        private bool ground = true;
+        public bool ground = true;
 
         //state machine states
         public StateMachine sm;

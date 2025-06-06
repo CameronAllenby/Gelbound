@@ -15,6 +15,7 @@ public class Move : State
     public override void Enter()
     {
         base.Enter();
+
     }
 
     public override void Exit()
@@ -30,7 +31,10 @@ public class Move : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        player.anim.Play("run");
+        if (player.ground == true)
+        {
+            player.anim.Play("Idle");
+        }
 
 
         if (Input.GetAxis("Horizontal") !=0)

@@ -6,6 +6,7 @@ public class RangedEnemy : MonoBehaviour
     public float speed;
 
     private Transform target;
+    public Transform up;
     public SpriteRenderer sr;
     public float stoppingDistance;
     public float stopping;
@@ -14,6 +15,7 @@ public class RangedEnemy : MonoBehaviour
     public int health = 2;
     private float timer;
     public GameObject self;
+   
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -23,7 +25,7 @@ public class RangedEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+     
         if (target.transform.position.x < transform.position.x)
         {
             sr.flipX = true;
@@ -60,6 +62,10 @@ public class RangedEnemy : MonoBehaviour
             health--;
         }
 
+        if (collision.CompareTag("Ground") == true && Vector2.Distance(transform.position, target.position) <= stopping)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, up.position, speed * Time.deltaTime);
+        }
 
     }
     public void shoot()
